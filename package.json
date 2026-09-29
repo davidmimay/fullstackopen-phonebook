@@ -1,0 +1,29 @@
+{
+  "name": "fullstackopen-phonebook",
+  "version": "1.0.0",
+  "description": "Fullstack Open Course - University of Helsinki - Exercises Part 3",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidmimay/fullstackopen-phonebook.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/davidmimay/fullstackopen-phonebook/issues"
+  },
+  "homepage": "https://github.com/davidmimay/fullstackopen-phonebook#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
