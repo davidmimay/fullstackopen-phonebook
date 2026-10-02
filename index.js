@@ -28,6 +28,14 @@ let persons = [
 // Middleware
 app.use(express.json())
 
+// Functions
+const randomId = () => {
+  const maxId  = persons.length > 0
+    ? Math.max(...persons.map(n => n.id))
+    : 0
+  return Math.floor(Math.random() * 10000) + maxId + 1
+}
+
 // Routes
 app.get('/', (request, response) => {
   response.send('<h1>Server running...</h1>')
@@ -67,20 +75,22 @@ app.delete('/api/persons/:id' , (request, response) => {
   response.status(204).end()
 })
 
-const randomId = () =>{
-  const maxId  = persons.length > 0
-    ? Math.max(...persons.map(n => n.id))
-    : 0
-  return Math.floor(Math.random() * 10000) + maxId + 1
-}
+
 
 app.post('/api/persons', (request, response) => {
-
   const body = request.body
 
-  if (!body.name || !body.number) {
+  if (!body || !body.name || !body.number) {
     return response.status(400).json({
-      error: 'content missing'
+      error: 'name or number missing'
+    })
+  }
+
+  const nameExists = persons.some( person => person.name.toLowerCase() === body.name.toLowerCase())
+
+  if (nameExists) {
+    return response.status(400).json({
+      error: 'name must be unique'
     })
   }
 
