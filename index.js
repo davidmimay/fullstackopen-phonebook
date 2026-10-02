@@ -1,4 +1,5 @@
 const express = require('express')
+const morgan = require('morgan')
 const app = express()
 
 // Data
@@ -27,6 +28,7 @@ let persons = [
 
 // Middleware
 app.use(express.json())
+app.use(morgan('tiny'))
 
 // Functions
 const randomId = () => {
