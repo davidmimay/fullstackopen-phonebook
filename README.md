@@ -1,4 +1,5 @@
 # fullstackopen-phonebook
+
 Fullstack Open Course - University of Helsinki - Exercises Part 3
 
 ## DEV
@@ -6,5 +7,6 @@ Fullstack Open Course - University of Helsinki - Exercises Part 3
 $ npm start
 $ npm run dev
 
-## RENDER
+## RENDER DEPLOY
+
 https://fullstackopen-phonebook-gyk1.onrender.com
