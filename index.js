@@ -22,16 +22,18 @@ app.get('/', (request, response) => {
   response.send('<h1>Server running...</h1>')
 })
 
-app.get('/info', (request, response) => {
-  Person.countDocuments({}).then(count => {
-    const date = new Date()
-    response.send(`
-      <div>
-        <p>Phonebook has info for ${count} people</p>
-        <p>${date}</p>
-      </div>
-    `)
-  })
+app.get('/info', (request, response, next) => {
+  Person.countDocuments({})
+    .then(count => {
+      const date = new Date()
+      response.send(`
+        <div>
+          <p>Phonebook has info for ${count} people</p>
+          <p>${date}</p>
+        </div>
+      `)
+    })
+    .catch(error => next(error))
 })
 
 app.get('/api/persons', (request, response) => {
@@ -73,14 +75,6 @@ app.post('/api/persons', (request, response, next) => {
     .catch(error => next(error))
 })
 
-app.delete('/api/persons/:id', (request, response) => {
-  Person.findByIdAndDelete(request.params.id)
-    .then(() => {
-      response.status(204).end()
-    })
-    .catch(error => next(error))
-})
-
 app.put('/api/persons/:id', (request, response, next) => {
   const { name, number } = request.body
 
@@ -104,6 +98,14 @@ app.put('/api/persons/:id', (request, response, next) => {
       } else {
         response.status(404).end()
       }
+    })
+    .catch(error => next(error))
+})
+
+app.delete('/api/persons/:id', (request, response) => {
+  Person.findByIdAndDelete(request.params.id)
+    .then(() => {
+      response.status(204).end()
     })
     .catch(error => next(error))
 })
