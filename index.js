@@ -73,11 +73,15 @@ app.post('/api/persons', (request, response, next) => {
     .catch(error => next(error))
 })
 
-app.delete('/api/persons/:id' , (request, response) => {
-  const id = Number(request.params.id)
-  persons = persons.filter(person => person.id !== id)
-
-  response.status(204).end()
+app.delete('/api/persons/:id', (request, response) => {
+  Person.findByIdAndDelete(request.params.id)
+    .then(() => {
+      response.status(204).end()
+    })
+    .catch(error => {
+      console.log(error)
+      response.status(400).send({ error: 'malformatted id' })
+    })
 })
 
 // Final Middleware
