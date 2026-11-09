@@ -7,6 +7,11 @@ Fullstack Open Course - University of Helsinki - Exercises Part 3
 $ npm start
 $ npm run dev
 
-## RENDER DEPLOY
+## BUILD
+
+$ cd frontend
+$ npm run build
+
+## DEPLOY
 
 https://fullstackopen-phonebook-gyk1.onrender.com
