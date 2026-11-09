@@ -89,8 +89,12 @@ const App = () => {
           showNotification(`Created ${returnedPerson.name}`, 'success')
         })
         .catch(error => {
-          console.log('Error saving person', error)
+          console.log('Error saving person', error.response.data.error)
+          setErrorMessage(error.response.data.error) 
           showNotification(`Cannot save contact`, 'error')
+          setTimeout(() => {
+            setErrorMessage(null)
+          }, 5000)
         })
     }
   }

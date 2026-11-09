@@ -17,9 +17,19 @@ mongoose.connect(url)
 
 // Schema
 const personSchema = new mongoose.Schema({
-  name: String,
-  number: String,
+  name: {
+    type: String,
+    minLength: 3,
+    required: true,
+    unique: true
+  },
+  number: {
+    type: String,
+    required: true
+  }
 })
+
+// ELIMINAMOS personSchema.plugin(uniqueValidator) que causaba el conflicto
 
 personSchema.set('toJSON', {
   transform: (document, returnedObject) => {
